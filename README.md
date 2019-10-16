@@ -1,55 +1,86 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# archeosciences2018
+# archeosciences2019
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh///master?urlpath=rstudio)
+[![DOI](https://zenodo.org/badge/DOI/xxx/xxx.svg)](https://doi.org/xxx/xxx)
+[![GitHub
+Release](https://img.shields.io/github/release/nfrerebeau/archeosciences2018.svg)](https://github.com/nfrerebeau/archeosciences2018/releases)
+[![Travis-CI Build
+Status](https://travis-ci.org/nfrerebeau/archeosciences2018.svg?branch=master)](https://travis-ci.org/nfrerebeau/archeosciences2018)
 
-This repository contains the data and code for our paper:
+This repository contains the data and code for our paper (in french):
 
-> Authors, (YYYY). *Title of your paper goes here*. Name of journal/book
-> <https://doi.org/xxx/xxx>
+> Frerebeau, N. et Pernot, M. (2018). Dans la chaleur des fours : que
+> restituer des pratiques des céramistes des sociétés anciennes ?.
+> *Archéosciences, revue d’Archéométrie*, 42-2, p. 95-105. DOI :
+> <https://doi.org/10.4000/archeosciences.6007>.
 
-Our pre-print is online here:
+The files hosted in this repository are the development versions and may
+have changed since the paper was published.
 
-> Authors, (YYYY). *Title of your paper goes here*. Name of
-> journal/book, Accessed 16 oct. 2019. Online at
-> <https://doi.org/xxx/xxx>
-
-### How to cite
+## How to cite
 
 Please cite this compendium as:
 
-> Authors, (2019). *Compendium of R code and data for Title of your
-> paper goes here*. Accessed 16 oct. 2019. Online at
-> <https://doi.org/xxx/xxx>
+> Frerebeau, N. and Pernot, M. (2019). *Compendium of R code and data
+> for “Dans la chaleur des fours : que restituer des pratiques des
+> céramistes des sociétés anciennes ?”*. Accessed YYYY-MM-DD. Online at
+> <https://doi.org/xxx/xxx>.
 
-### How to download or install
+## Licenses
 
-You can download the compendium as a zip from from this URL:
-</archive/master.zip>
+**Text and figures:**
+[CC-BY-SA-4.0](http://creativecommons.org/licenses/by-sa/4.0/).
 
-Or you can install this compendium as an R package, archeosciences2018,
-from GitHub with:
+**Code:** see the [DESCRIPTION](DESCRIPTION) file.
+
+**Datasets:**
+[CC-BY-SA-4.0](http://creativecommons.org/licenses/by-sa/4.0/).
+
+## Instalation
+
+You can download the compendium as a zip from from this
+[URL](http://github.com/nfrerebeau/archeosciences2018/archive/master.zip).
+
+Or you can install this compendium as an R package,
+`archeosciences2018`, from GitHub with:
 
 ``` r
 # install.packages("devtools")
-remotes::install_github("/")
+remotes::install_github("nfrerebeau/archeosciences2018")
 ```
 
-### Licenses
+To download the package source as you see it on GitHub, for offline
+browsing, use this line at the shell prompt (assuming you have Git
+installed on your computer):
 
-**Text and figures :**
-[CC-BY-4.0](http://creativecommons.org/licenses/by/4.0/)
+``` sh
+git clone https://github.com/nfrerebeau/archeosciences2018.git
+```
 
-**Code :** See the [DESCRIPTION](DESCRIPTION) file
+## Usage
 
-**Data :** [CC-0](http://creativecommons.org/publicdomain/zero/1.0/)
-attribution requested in reuse
+Once the download is complete, open the `archeosciences2018.Rproj` in
+RStudio to begin working with the package and compendium files.
 
-### Contributions
+The `analysis/` directory contains:
 
-We welcome contributions from everyone. Before you get started, please
-see our [contributor guidelines](CONTRIBUTING.md). Please note that this
-project is released with a [Contributor Code of Conduct](CONDUCT.md). By
-participating in this project you agree to abide by its terms.
+  - The Rmarkdown source file of the manuscript (in the `paper/`
+    subdirectory),
+  - All the figures generated from R code (in the `figures/`
+    subdirectory),
+  - All the raw data files (in CSV format, in the `data/` subdirectory),
+  - Code files used for data cleaning (in the `scripts/` subdirectory).
+
+The `R/` directory contains the custom R functions used in this project.
+Datasets (in RDA format) are located in the `data/` directory.
+
+## Dependencies
+
+The original manuscript was produced with R 3.6.0. See the
+[DESCRIPTION](DESCRIPTION) file for a full list of the packages that
+this project depends on, including the suggested packages. The
+`packrat/` directory contains the source code for all the packages we
+depend on. If all works well, these will be installed on your machine
+when you open `archeosciences2018.Rproj` in RStudio.
