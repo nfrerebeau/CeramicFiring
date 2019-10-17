@@ -20,11 +20,11 @@ ByteCompile: true
 Encoding: UTF-8
 LazyData: true
 Imports: 
-    magicaxis
-Suggests:
     bookdown,
-    devtools,
+    kableExtra,
     knitr,
-    rmarkdown,
-    usethis
+    magicaxis,
+    rmarkdown
+Suggests:
+    devtools
 RoxygenNote: 6.1.1

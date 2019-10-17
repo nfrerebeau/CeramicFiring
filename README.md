@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# archeosciences2019
+# archeosciences2018
 
 [![DOI](https://zenodo.org/badge/DOI/xxx/xxx.svg)](https://doi.org/xxx/xxx)
 [![GitHub
@@ -80,7 +80,4 @@ Datasets (in RDA format) are located in the `data/` directory.
 
 The original manuscript was produced with R 3.6.0. See the
 [DESCRIPTION](DESCRIPTION) file for a full list of the packages that
-this project depends on, including the suggested packages. The
-`packrat/` directory contains the source code for all the packages we
-depend on. If all works well, these will be installed on your machine
-when you open `archeosciences2018.Rproj` in RStudio.
+this project depends on, including the suggested packages.

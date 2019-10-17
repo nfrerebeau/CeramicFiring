@@ -12,11 +12,9 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.path = "README-"
 )
-# Please put your title here to include it in the file below.
-Title <- "Title of your paper goes here"
 ```
 
-# archeosciences2019
+# archeosciences2018
 
 [![DOI](https://zenodo.org/badge/DOI/xxx/xxx.svg)](https://doi.org/xxx/xxx)
 [![GitHub Release](https://img.shields.io/github/release/nfrerebeau/archeosciences2018.svg)](https://github.com/nfrerebeau/archeosciences2018/releases)
