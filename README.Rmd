@@ -73,4 +73,4 @@ The `R/` directory contains the custom R functions used in this project. Dataset
 
 ## Dependencies
 
-The original manuscript was produced with R 3.6.0. See the [DESCRIPTION](DESCRIPTION) file for a full list of the packages that this project depends on, including the suggested packages. The `packrat/` directory contains the source code for all the packages we depend on. If all works well, these will be installed on your machine when you open `archeosciences2018.Rproj` in RStudio.
+The original manuscript was produced with R 3.6.0. See the [DESCRIPTION](DESCRIPTION) file for a full list of the packages that this project depends on, including the suggested packages.
