@@ -1,38 +1,49 @@
 ---
-title: "Title Goes Here"
+title: "Dans la chaleur des fours : que restituer des pratiques des céramistes des sociétés anciennes ?"
+shorttitle: "Le cru et le cuit"
+date: "Soumis à *ArchéoSciences* le 2 mai 2018 --- Accepté pour publication le 2 novembre 2018"
 author:
-  - Myfirstname Mylastname:
-      email: fl@oneplace.edu
-      institute: [UofO]
+  - Nicolas Frerebeau:
+      email: nicolas.frerebeau@u-bordeaux-montaigne.fr
+      institute: [CRP2A,LAPA]
       correspondence: true
-  - Yourfirstname Yourlastname:
-      email: fl@another.edu
-      institute: [UofA]
+  - Michel Pernot:
+      email: michel.pernot@u-bordeaux-montaigne.fr
+      institute: [CRP2A]
       correspondence: false
 institute:
-  - UofO: University of One Place
-  - UofA: University of Another Place
-date: "`r format(Sys.time(), '%d %B, %Y')`"
-output: 
-    bookdown::word_document2:
-      fig_caption: yes
-      reference_docx: "../templates/template.docx" # Insert path for the DOCX file
-      pandoc_args:
-      - --lua-filter=../templates/scholarly-metadata.lua
-      - --lua-filter=../templates/author-info-blocks.lua
-      - --lua-filter=../templates/pagebreak.lua
-bibliography: references.bib
-csl: "../templates/journal-of-archaeological-science.csl" # Insert path for the bib-style
+  - CRP2A: IRAMAT-CRP2A (UMR 5060, CNRS - Université Bordeaux Montaigne). Maison de l\'Archéologie, Université Bordeaux Montaigne, Domaine Universitaire, F-33607 Pessac cedex.
+  - LAPA: Laboratoire Archéomatériaux et Prévention de l\'Altération. IRAMAT-LMC (UMR 5060, CNRS – Université de Technologie Belfort-Montbéliard) / NIMBE (UMR 3685, CNRS – CEA). Commissariat à l\'Énergie Atomique - Bât. 637, F-91191 Gif-sur-Yvette cedex.
 abstract: |
-  Text of abstract
+  Véritables lieux communs dans l'étude de la production des matériaux céramiques, la température et l'atmosphère de cuisson sont pourtant des indicateurs ambigus lorsqu'il s'agit de décrire la tache stratégique de constitue l'étape de la cuisson. Malgré les problèmes – tant d'ordre méthodologique que conceptuel – soulevés par les rares études antérieures, comment expliquer qu'ils soient d'un usage si commun et, surtout, participent-ils effectivement à la description de procédés techniques ?
 keywords: |
-  keyword 1; keyword 2; keyword 3
-highlights: |
-  These are the highlights. 
+  céramique; cuisson de l'argile; température de cuisson; atmosphère de cuisson; restitution; anachronisme 
+output: 
+  bookdown::pdf_document2:
+    toc: false
+    fig_caption: yes
+    number_sections: true
+    pandoc_args:
+    - --lua-filter=../templates/scholarly-metadata.lua
+    - --lua-filter=../templates/author-info-blocks.lua
+    - --lua-filter=../templates/pagebreak.lua
+  bookdown::word_document2:
+    fig_caption: yes
+    number_sections: true
+    reference_docx: "../templates/template.docx"
+    pandoc_args:
+    - --lua-filter=../templates/scholarly-metadata.lua
+    - --lua-filter=../templates/author-info-blocks.lua
+    - --lua-filter=../templates/pagebreak.lua
+header-includes:
+  - \usepackage{amsmath}
+  - \usepackage{amssymb}
+lang: fr
+bibliography: references.bib
+csl: "../templates/archeosciences.csl"
+editor_options: 
+  chunk_output_type: console
 ---
-
-
-<!-- This is the format for text comments that will be ignored during renderings. Do not put R code in these comments because it will not be ignored. -->
 
 ```{r setup, echo = FALSE}
 knitr::opts_chunk$set(
@@ -45,60 +56,326 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Introduction
-
-Here is a citation [@Marwick2017]
-
-# Background
-
-# Methods
-
-# Results
-
-```{r get-data, eval = FALSE}
-# Note the path that we need to use to access our data files when rendering this document
-my_data <- read.csv(here::here('analysis/data/raw_data/my_csv_file.csv'))
+```{r packages}
+library(magrittr)
 ```
 
-```{r demo-plot, fig.cap="A plot of random numbers"}
-plot(rnorm(10))
+```{r import, echo=FALSE}
+# Import des données
+ceram <- read.table("../data/cuisson.csv", header = TRUE, row.names = 1,
+                    encoding = "UTF-8", dec = ",", sep = ";")
+thermo <- read.table("../data/mineraux.csv", header = TRUE, row.names = NULL,
+                     encoding = "UTF-8", dec = ",", sep = ";")
+thermo2 <- thermo[-c(8:16), ]
 ```
 
-Figure \@ref(fig:demo-plot) shows how we can have a caption and cross-reference for a plot
-
-```{r demo-inline-code}
-x <- round(pi, 2)
-```
-
-Here is an example of inline code `r x` in the middle of a sentence. 
-
-# Discussion
-
-# Conclusion
-
-# Acknowledgements
-
-<!-- The following line inserts a page break  -->
+<!-- La ligne suivante insere un saut de page  -->
 \newpage
 
-# References 
-<!-- The following line ensures the references appear here for the MS Word or HTML output files, rather than right at the end of the document (this will not work for PDF files):  -->
+# Introduction
+Étape cruciale s'il en est, la cuisson des matériaux céramiques confère aux objets façonnés leurs propriétés mécaniques, réfractaires et --- pour une part --- esthétiques définitives. D'entre toutes, l'étape de la cuisson constitue ainsi le moment stratégique de la fabrication [@lemonnier1983], d'autant plus que lui est attaché un risque économique intrinsèque : celui de perdre tout ou partie de la charge à cuire et autant de temps de travail humain.
+
+La fabrication d'artefacts en céramique ne relève cependant pas d'un simple changement de matière qui opposerait le cru au cuit, mais bien de la sélection de traits utiles parmi les propriétés de la matière, le matériau final étant le produit de cette sélection. Si les règles et éventuels interdits entourant cette étape sont difficilement accessibles pour les sociétés anciennes, faute de documentation archéologique, les stratégies mises en œuvre pour en contrôler (au moins en partie) le déroulement peuvent être plus facilement appréciées --- du moins le semblent-elles. C'est notamment le sens des deux critères, véritables lieux communs dans l'étude de la production des matériaux céramiques, que sont la température et l'atmosphère de cuisson.
+
+Pour estimer ces paramètres, encore faut-il identifier les indices pertinents et ne pas se laisser tromper par l'illusion de sécurité que peuvent conférer les valeurs chiffrées : dans l'étude des techniques anciennes, la volonté d'objectivation se fait le plus souvent au prix d'une simplification excessive du problème [@jones1993; @farnoux1995]. L'objectif du présent article n'est ainsi pas de proposer une revue des méthodes existantes, mais de proposer un retour critique sur ces indicateurs de température et d'atmosphère de cuisson. Il s'agit de discuter la pertinence même de la démarche : comment remonter à la technique à partir de l'objet lui-même ? Et que cela fasse sens, alors que les stigmates de sa fabrication sont susceptibles d'avoir été effacés au fil des processus qui nous intéressent ici.
+
+# Température de cuisson
+## Pertinence du paramètre température
+L'estimation des températures de cuisson des matériaux céramique a fait l'objet d'une abondante recherche méthodologique depuis les travaux pionniers de Shepard -@shepard1936 (pour un aperçu du panel de méthodes on consultera, entres autres : @tite1969 ; @maniatis1981 ; @heimann1982 ; @maggetti1982 ; @shoval2003 ; @mirti2004 ; @mangueira2011 ; @rasmussen2012). Indépendamment de la méthodologie mise en œuvre, cette estimation repose sur la construction d'équivalents de thermomètres en identifiant des critères (minéralogie, porosité, vitrification, couleur, dureté, etc.) dont les variations sont considérées comme liées à celles de la température. L'étalonnage du thermomètre en question est généralement réalisé par la construction d'un référentiel expérimental pour lequel une éprouvette est chauffée à différentes gammes de température puis comparée avec les matériaux archéologiques étudiés : la question est alors celle de l'existence d'une analogie correcte entre l'artefact et le référentiel.
+
+La construction d'une analogie entre systèmes est un problème récurrent qui dépasse le seul champ de l'archéologie et a notamment été exploré par @bunge1981, qui en propose une conception qualitative et quantitative. Pour Bunge, l'établissement d'une analogie significative entre deux systèmes nécessite de s'assurer que ceux-ci sont analogues en substance (ils possèdent les mêmes composants), en termes d'environnement (les mêmes facteurs affectent ou sont affectés par lesdits composants), ou en structure (les mêmes relations existent entre les composants et entre les composants et l'environnement). L'auteur de conclure, d'une part, qu'une analogie peut être considérée comme correcte dès lors qu'elle est significative pour au moins un de ces trois aspects et, d'autre part, que toute analogie constitue un dispositif heuristique : une hypothèse provisoire qui tend vers la solution optimale.
+
+Partant de cette définition, pour établir une analogie complète l'éprouvette doit avoir la même composition (élémentaire, minéralogique, etc.), ses composants doivent entretenir les mêmes relations (géométrie de l'artefact, répartition des grains dans la matrice argileuse, distribution des tailles de grain, porosité, etc.) et doit être soumise aux mêmes conditions de cuisson (loi d'échauffement, etc.) que l'artefact étudié. Autrement formulé, si les données nécessaires à la construction d'analogies substantielle et structurelle peuvent être collectées par l'observation et l'analyse, l'analogie environnementale nécessite une connaissance a priori de l'objet archéologique qui rend quasiment caduc le besoin d'un référentiel expérimental. Une telle connaissance peut cependant rarement être atteinte et deux alternatives sont disponibles : soit postuler les paramètres inconnus, soit définir des conditions standard permettant au mieux de comparer des individus entre eux. C'est le sens de la température équivalente de cuisson, telle que proposée par @tite1995 :
+
+> *« [...] it is more appropriate to define an “equivalent firing temperature” which is that temperature maintained for one hour which would produce the observed mineralogy or microstructure. »*
+
+La température équivalente de cuisson ainsi définie n'est donc pas équivalente à la température réelle atteinte lors de la cuisson. Il s'agit en effet d'une équivalence de conséquences, étant entendu que celles-ci peuvent résulter d'une multitude de causes : les critères exploités ne sont en effet nullement univoques (exclusivement dépendants de la température). Minéralogie et microstructure sont tout autant liées à la température qu'à l'atmosphère ou à la durée de la cuisson et rendent impossible une estimation directe de la seule température [@tite1995; @maggetti2011; @riccardi1999]. L'analogie environnementale n'est pas vérifiée alors qu'il s'agit précisément de l'aspect à établir pour la construction d'un thermomètre du type souhaité.
+
+En rapportant ainsi le caractère particulier de l'artefact à celui, générique, du référentiel-modèle, cette démarche se rapporte théoriquement à une restitution, mais dont on ne peut tirer un argument ou une preuve sans tomber aussitôt dans le piège du raisonnement circulaire : à la fois postulat a priori permettant la construction du référentiel et confirmation a posteriori du résultat établi sur ce postulat [@balut1982]. Il apparaît ainsi que cette démarche d'estimation relève dans sa définition actuelle de la reconstitution.
+
+Les rares données thermométriques disponibles issues de la documentation ethnographique [@gosselain1992; @livingstonesmith2001b] permettent de mettre en évidence l'extrême variabilité de la température dans le temps (au cours d'une même cuisson) et l'espace (au sein d'une même structure de cuisson ou de part et d'autre d'un même objet à un instant donné ; @maggetti2011). Les écarts de température enregistrés au sein d'un même four peuvent ainsi dépasser 300°C [@rye1981; @sheehy1988]. De plus, Le recouvrement des gammes de températures atteintes (fig. \@ref(fig:chauffe)) interdit d'identifier tout lien entre la température maximale atteinte et les structures de cuisson mises en œuvre, entre lesquelles il n'existe aucune différence significative. Réduire la cuisson à la température maximale atteinte n'a ainsi aucune signification technique et détemporalise des activités qui relèvent de processus dynamiques.
+
+```{r chauffe, fig.width=3.5, fig.height=3.5, fig.cap="Distribution des vitesses de chauffe (vitesse moyenne de montée en température, °C/min) en fonction des durées de cuisson (min) et des températures maximales atteintes (°C) pour trois types de structures de cuisson. D'après les données collectées et compilées par @gosselain1992 et @livingstonesmith2001b."}
+par(mfrow = c(1, 2), mar = c(4, 4, 0, .5) + 0.1, cex = 0.8, las = 2)
+boxplot(
+  ceram$TMoy~ceram$StructureFr, 
+  outline = FALSE,
+  col = c("#4477AA", "#DDCC77", "#CC6677"),
+  xlab = "", ylab = "Température maximale atteinte (°C)")
+boxplot(
+  ceram$VChauffe~ceram$StructureFr, 
+  outline = FALSE,
+  col = c("#4477AA", "#DDCC77", "#CC6677"),
+  xlab = "", ylab = "Vitesse de montée en température (°C/min)"
+)
+# t <- pairwise.t.test(x = ceram$TMoy, g = ceram$StructureFr,
+#                      p.adjust.method = "bonferroni")
+```
+
+## Température et temps
+Conscient du problème et de l'importance du facteur temps (et en réaction à l'article de Gosselin de 1992), Tite précise que seule la température équivalente est d'intérêt mais ne rend effectivement pas compte de la température au sein de la structure de cuisson. Au mieux celle-ci constitue-t-elle un indice de la chaleur totale transmise au système ayant permis les transformations constatées, soit une combinaison de la température et du temps [@tite1995; @tite1999]. Ce dernier point n'est cependant que très rarement considéré en tant que tel, tant par le maintien d'une notation scientifique inappropriée, que par celui d'une appellation ambiguë au sein de laquelle s'opère une omission faisant régulièrement disparaître le terme « équivalente ».
+
+En posant le problème en termes énergétiques, il serait finalement possible d'identifier le type de structure de cuisson, en considérant que le four permet les apports d'énergie les plus importants. La distinction ainsi construite entre cuisson en four et en aire ouverte constitue cependant une simplification excessive du problème, illustrée par les données ethnographiques disponibles (fig. \@ref(fig:chauffe)). Si des tendances semblent se dégager en fonction des types de structures mis en œuvre, la diversité des pratiques exclut de fait la possibilité d'établir cette distinction pour des situations individuelles. Les données présentées illustrent l'importante variabilité des durées de cuisson pour les structures en fosse contrairement aux fours et cuissons en meules, dont la dispersion est bien moindre, sans qu'il soit pour autant possible de noter des différences marquantes.
+
+Le couplage des paramètres temps et température et l'intérêt ainsi porté aux aspects énergétiques n'en demeurent pas moins pertinents. À ce titre, la vitesse de chauffe semble être le seul paramètre pour lequel il existe des écarts notables, les fours et fosses présentant des vitesses de montée en température bien moindres que les cuissons en meules (@livingstonesmith2001b ; fig. \@ref(fig:chauffe)). On notera cependant la rareté des données disponibles concernant l'aspect de la cinétique des transformations au cours de la cuisson. Il semblerait néanmoins qu'une augmentation de la durée d'exposition à la température maximale d'un facteur 5 équivaudrait à augmenter la température maximale de 30°C (malheureusement, cette observation repose sur des études anciennes, isolées et non reproduites à ce jour : @norton1931 ; @berenshtein1980). Or, pour les contextes productifs qui nous intéressent ici, il n'est pas déraisonnable de considérer que le contrôle de la cuisson relève avant tout de la gestion de la durée (mesurable) plutôt que de la température (pas même conceptualisée).
+
+Caractériser le processus de cuisson en termes de couple temps-température doit en effet faire intervenir trois variables indissociables que sont la vitesse de chauffe, la température maximale atteinte et la durée d'un éventuel palier isotherme (*soaking time* ; @livingstonesmith2001b). Variables auxquelles il est possible d'ajouter la vitesse de refroidissement. En effet, l'étape de refroidissement fait strictement partie de la cuisson : de la vitesse de ce dernier dépend le déroulement de certaines transformations dont la réalisation est susceptible d'affecter les propriétés du produit fini. À cet égard, deux situations coexistent. Dans un premier cas, les produits peuvent être laissés à refroidir dans la structure, dont l'inertie thermique va permettre de prolonger cette dernière phase de la cuisson ou, dans un deuxième cas, leur exposition à des températures élevées peut être brutalement interrompue en les sortants de la structure (@livingstonesmith2001a, p. 160).
+
+@picon2002 propose ainsi une segmentation de l'étape de cuisson, distinguant la cuisson *stricto sensu*, soit la montée en température et un éventuel palier isotherme, de la cuisson *lato sensu*, la cuisson au sens strict complétée de la phase de refroidissement. Si le découpage proposé permet de bien mettre en évidence la succession des différentes phases, il tend également à marquer des ruptures nettes entre celles-ci, que l'auteur associe également à des changements de l'atmosphère de cuisson. Il apparaît cependant que les frontières sont souvent floues et que les différents paramètres n'évoluent pas nécessairement de façon synchrone.
+
+# Atmosphères de cuisson
+## Composition et variation de l'atmosphère de cuisson
+La composition de l'atmosphère de cuisson des matériaux céramiques apparaît comme un mélange complexe et changeant. Gaz et particules en suspension issus de la combustion et des transformations de la matière première argileuse s'ajoutent en effet à ceux présents lors de la fermeture du four. L'atmosphère au sein du laboratoire est ainsi susceptible d'évoluer au cours du temps, au gré de l'avancement de la cuisson, et d'osciller entre un domaine oxydant (riche en oxygène, correspondant aux conditions normales à la surface de la Terre) et un domaine réducteur.
+
+La pratique archéologique ne retient cependant que ces deux extrêmes et les oppose (cuisson oxydante vs. cuisson réductrice). Il est alors entendu que des conditions oxydantes permettent la fabrication de matériaux de couleur rouge à beige (les céramiques couramment dites à « pâte claire »^[Cette appellation ambiguë, substituant un qualificatif de luminosité à un adjectif de couleur, désigne des artefacts dont la surface n'est ni grise ni noire, quelles qu'en soient l'intensité, la saturation ou la luminosité de leur coloration [@picon2002]. Cette définition par la négative conduit au regroupement de productions susceptibles de présenter des caractéristiques techniques et des propriétés pour le moins hétérogènes.]), tandis que des conditions réductrices permettent d'obtenir des teintes entre le gris et le noir (Picon, 2002).
+
+L'apparition d'une coloration rouge suite à la cuisson est très majoritairement associée à la présence d'oxydes de fer ferrique : de faibles teneurs en hématite (de l'ordre de 1 % massique) sont en effet à même de conférer à la matrice céramique une teinte rosée.  Le rôle des oxydes de titane ou de manganèse est également rapporté mais apparaît d'une influence bien moindre [@houseman1971a; @kreimeyer1987; @molera1998; @valanciene2010]. Tandis que, à l'inverse, la présence de spinelles semi-ferreux (magnétite et hercynite) provoque l'apparition d'une coloration grise ou noire, parfois accentuée par la présence de carbone dans les pores de l'objet [@molera1998; @picon2002; @nodari2004].
+
+Pour autant, la seule présence de fer ne constitue pas une condition suffisante au développement de cette coloration [@kreimeyer1987]. L'élément fer est en effet susceptible d'être incorporé lors de la formation de phases amorphes ou cristallines au cours de la cuisson, par le jeu des substitutions, plutôt que de perdurer sous la forme d'oxydes libres, affectant ainsi ses propriétés chromogènes. Auquel cas, le jeu des substitutions conduit alors au développement d'une coloration rose à jaune, parfois très lumineuse :
+
+* Dans le cas des céramiques peu calciques, il s'agit alors essentiellement de la substitution de $Al^{3+}$ par $Fe^{3+}$ dans la structure de la mullite ou de l'incorporation de cations $Fe^{3+}$ au sein de la métakaolinite amorphe (Kreimeyer, 1987).
+* Dans le cas des céramiques calciques à très calciques, les cations $Fe^{2+}$ et $Fe^{3+}$ sont incorporés au sein de pyroxènes (préférentiellement en coordination octaédrique, par diffusion à l'état solide en remplacement d'ions $Mg^{2+}$ et $Ca^{2+}$) ou de phases du groupe des mélilites (en coordination tétraédrique), prévenant ainsi la formation de spinelles (hercynite ; @maniatis1983 ; @noller1985 ; @vandenberghe1991, cité par @molera1998).
+
+## Domaines oxydant et réducteur
+Si cette approche chromatique est certainement pratique, elle pose néanmoins un problème : celui de la frontière entre domaines oxydant et réducteur. La coloration des matériaux constituant ici le critère diagnostic, les couples oxydant-réducteur d'intérêt sont donc ceux faisant intervenir les composés chromogènes présents dans la matrice céramique : les oxydes et hydroxydes de fer.
+
+L'hématite présente dans les matériaux céramiques a une double origine : à la fois primaire, présente dans la ou les matières premières mises en œuvre, et secondaire, conséquence de la déshydratation d'oxyhydroxydes de fer (gœthite par exemple), de la déshydroxylation de minéraux argileux (chlorite et micas en particulier ; @vedder1969 ; @nodari2007) ou de l'oxydation de certains spinelles (maghémite, magnétite ou hercynite) au cours de la cuisson [@rathossi2010]. La conversion de l'hématite en magnétite, et réciproquement, est un phénomène naturel relativement commun, décrit par des processus d'oxydoréduction, tels que résumés par les réactions \@ref(eq:redox1) à \@ref(eq:redox3) :
+
+\begin{equation} 
+  4 Fe_{3}O_{4} + O_{2} \Leftrightarrow 6 Fe_{2}O_{3}
+  (\#eq:redox1)
+\end{equation}
+
+\begin{equation} 
+  2 Fe_{3}O_{4} + H_{2}O \Leftrightarrow 3 Fe_{2}O_{3} + H_{2}
+  (\#eq:redox2)
+\end{equation}
+
+\begin{equation} 
+  2 Fe_{3}O_{4} + CO_{2} \Leftrightarrow 3 Fe_{2}O_{3} + CO
+  (\#eq:redox3)
+\end{equation}
+
+Ces réactions étant liées entre elles par les réactions \@ref(eq:redox4) et \@ref(eq:redox5) :
+
+\begin{equation} 
+  2 CO + O_{2} \Leftrightarrow 2 CO_{2}
+  (\#eq:redox4)
+\end{equation}
+
+\begin{equation} 
+  2 H_{2} + O_{2} \Leftrightarrow 2 H_{2}O
+  (\#eq:redox5)
+\end{equation}
+
+Considérant la réaction \@ref(eq:redox1) dans le sens de l'oxydation de la magnétite ($Fe_{3}O_{4}$) en hématite ($Fe_{2}O_{3}$), la variation d'enthalpie libre de réaction ($\Delta_{r}G$) associée est donnée par l'équation \@ref(eq:enthalpie1) :
+
+\begin{equation} 
+  \Delta_{r}G = \Delta_{r}G^{\circ} + R \times T \times \ln \left( \frac{1}{P_{O_{2}}} \right)
+  (\#eq:enthalpie1)
+\end{equation}
+
+$\Delta_{r}G^{\circ}$ est la variation d'enthalpie libre standard de réaction (en J.mol^-1^), $R$ la constante des gaz parfaits ($R = 8,314$ J.mol^-1^.K^-1^), $T$ la température (en K), $P_{O_{2}}$ et $P^{eq}_{O_{2}}$ la pression partielle de dioxygène instantanée et à l'équilibre, respectivement.
+
+Avec $\Delta_{r}G^{\circ} = - R \times T \times \ln \left( \frac{1}{P^{eq}_{O_{2}}} \right)$, l'équation \@ref(eq:enthalpie1) devient : $\Delta_{r}G = R \times T \times \ln \left( \frac{P^{eq}_{O_{2}}}{P_{O_{2}}} \right)$.
+
+Pour que cette réaction se produise spontanément, la variation d'enthalpie libre de réaction doit être négative, soit : $P_{O_{2}} > P^{eq}_{O_{2}}$. La courbe décrivant l'évolution des conditions d'équilibre en fonction de la température est ensuite aisément calculée à l'aide de la relation \@ref(eq:enthalpie2) ($\Delta_{f}G^{\circ}$ correspond aux variations d'enthalpie libre de formation des produits et réactifs et $\nu$ aux coefficients stœchiométriques).
+
+\begin{equation} 
+  \Delta_{r}G^{\circ} = \sum \nu_{prod} \Delta_{f}G^{\circ}_{prod} - \sum \nu_{reac} \Delta_{f}G^{\circ}_{reac}
+  (\#eq:enthalpie2)
+\end{equation}
+
+La frontière entre domaines oxydant et réducteur correspond ainsi à la courbe d'équilibre univariante $Fe_{2}O_{3}$/$Fe_{3}O_{4}$ dans le diagramme $P_{O_{2}} = f(T)$ (fig. \@ref(fig:domaines) ; @letsch1983). Le domaine de stabilité de l'hématite correspond aux conditions d'une cuisson dite oxydante tandis qu'une cuisson réductrice correspondra au domaine de stabilité de la magnétite. Il est également possible, en considérant la réaction \@ref(eq:redox6), de définir un domaine très réducteur correspondant au domaine de stabilité de la wüstite (fig. \@ref(fig:domaines)).
+
+```{r domaines, fig.width=3.5, fig.height=3.5, fig.cap="Diagramme de stabilité des oxydes de fer en fonction de la pression partielle de dioxygène. À partir des données fournies par @robie1995."}
+# Hématite - Magnétite - Wüstite
+par(fig = c(0, 1, 0, 1), mar = c(4, 4, 0, 0.5) + 0.1, cex = 0.8, las = 1)
+plot(
+  x = thermo2$Temp-273.15, y = thermo2$PO2_mag2hem,
+  type = "l", lty = 1, lwd = 1.5, col = "#4477AA", log = "y",
+  ylim = range(c(thermo2$PO2_wus2mag, thermo2$PO2_mag2hem), na.rm = TRUE),
+  xlab = "Température (°C)", ylab = expression("P"["O"[2]]~"(Pa)"),
+  yaxt = "n"
+)
+lines(
+  x = thermo2$Temp-273.15, y = thermo2$PO2_wus2mag,
+  type = "l", lty = 2, lwd = 1.5, col = "#CC6677"
+)
+ticks <- magicaxis::maglab(range(thermo2$PO2_mag2hem), log = TRUE, logpretty = TRUE)
+axis(2, at = ticks$labat, labels = ticks$exp)
+text(x = 420, y = 10^-14, labels = expression(paste("Fe"[2],"O"[3])), srt = 37)
+text(x = 500, y = 10^-20, labels = expression(paste("Fe"[3],"O"[4])), srt = 37)
+text(x = 560, y = 10^-26, labels = expression(paste("FeO")), srt = 37)
+legend(
+  "bottomright", lty = c(1, 2), lwd = 1.5, col =c("#4477AA", "#CC6677"),
+  legend = c(
+    expression(paste("4F",e[3],O[4]," + ",O[2] == "6F",e[2],O[3],sep="")),
+    expression(paste("6FeO + ",O[2] == "2F",e[3],O[4],sep=""))
+  )
+)
+```
+
+\begin{equation} 
+  6 FeO + O_{2} \Leftrightarrow 2 Fe_{3}O_{4}
+  (\#eq:redox6)
+\end{equation}
+
+Les conditions prévalant à la surface de la Terre assurent la stabilité de l'hématite (dans des conditions standard, la pression partielle de dioxygène atmosphérique est supérieure à la pression partielle d'équilibre). Ces conditions prévalent également à l'intérieur du four au moment de sa fermeture, et la réalisation d'une cuisson dite réductrice fait donc intervenir des mécanismes particuliers, entraînant une modification de la composition de l'atmosphère de cuisson.
+
+@letsch1983 distinguent deux mécanismes de réduction au cours de la cuisson de matières céramiques : une réduction dite « enfumée » (*smoking reduction*), et son corollaire, la réduction « en atmosphère claire » (*non-smoking reduction*). Cette distinction est d'autant plus intéressante qu'elle permet de distinguer des mécanismes habituellement regroupés indifféremment sous l'appellation de « cuisson réductrice ».
+
+Le premier mécanisme (*smoking reduction*) intervient en absence d'oxygène et entraîne le dépôt de carbone aux reflets métallescents à la surface des céramiques. Ce dernier se forme en absence d'oxygène par précipitation du carbone produit lors du craquage d'hydrocarbures volatils. Ce mécanisme perdure tant que sont présents des matériaux non carbonisés (combustible essentiellement) susceptibles de former des composés volatils par distillation sèche [@letsch1978; @letsch1983].
+
+Le second mécanisme (non-smoking reduction) intervient exclusivement selon les conditions décrites par l'équilibre de Boudouard \@ref(eq:boudouard), pour lequel le carbone est uniquement précipité au cours du refroidissement suite à la rupture de l'équilibre (fig. \@ref(fig:boudouard)).
+
+```{r boudouard, fig.width=7, fig.height=3.5, fig.cap="Equilibre de Boudouard. Gauche : évolution des pressions partielles de CO2 et de CO en fonction de la température. Droite : diagramme de stabilité du système Fe-O sous une atmosphère de CO-CO2 et évolution de la pression partielle de CO selon l'équilibre de Boudouard. À partir des données fournies par @robie1995."}
+par(mfrow = c(1,2), mar = c(4, 4, 0, 0.5) + 0.1, cex = 0.8, las = 0, new = FALSE)
+plot(
+  x = thermo$Temp-273.15, y = thermo$PCO2_boudouard,
+  type = "l", lty = 4, lwd = 1.5, col = "#DDCC77",
+  xlab = "Température (°C)", ylab = expression("P (Pa)"),
+  yaxt = "n"
+)
+lines(
+  x = thermo$Temp-273.15, y = thermo$PCO_boudouard,
+  type = "l", lty = 3, lwd = 1.5, col = "#117733"
+)
+ticks <- magicaxis::maglab(range(thermo$PCO2_boudouard))
+axis(2, at = ticks$labat, labels = ticks$exp)
+legend(
+  "bottomright",
+  lty = c(4, 3), lwd = 1.5, col =c("#DDCC77", "#117733"), bg = "#ffffff",
+  legend = c(expression("P"["CO"[2]]), expression("P"["CO"]))
+)
+
+# Equilibre de Boudouard - Fe
+plot(
+  x = thermo$Temp[1:24]-273.15, y = thermo$PCO_boudouard[1:24],
+  type = "l", lty = 3, lwd = 1.5, col = "#117733",
+  xlab = "Température (°C)", ylab = expression("P"["CO"]~"(Pa)"),
+  yaxt = "n"
+)
+lines(
+  x = thermo$Temp[12:24]-273.15, y = thermo$PCO_wus2mag[12:24],
+  type = "l", lty = 1, lwd = 1.5, col = "#4477AA"
+)
+lines(
+  x = thermo$Temp[1:12]-273.15, y = thermo$PCO_fe2mag[1:12],
+  type = "l", lty = 1, lwd = 1.5, col = "#4477AA"
+)
+lines(
+  x = thermo$Temp[12:24]-273.15, y = thermo$PCO_fe2wus[12:24],
+  type = "l", lty = 1, lwd = 1.5, col = "#4477AA"
+)
+ticks <- magicaxis::maglab(range(thermo$PCO_boudouard))
+axis(2, at = ticks$labat, labels = ticks$exp)
+# FeO + CO = Fe + CO2
+text(x = 1125, y = 7.55*10^4, srt = 15, labels = expression("Fe + CO"[2]~"="))
+text(x = 1150, y = 6.9*10^4, srt = 15, labels = expression("FeO + CO"))
+# Fe3O4 + CO = 3FeO + CO2
+text(x = 1150, y = 3.4*10^4, srt = -12, labels = expression("3FeO + CO"[2]~"="))
+text(x = 1125, y = 2.75*10^4, srt = -12, labels = expression(paste("Fe"[3], "O"[4]~"+ CO")))
+# Fe3O4 + 4CO = 3Fe + 4CO2
+text(x = 160, y = 2.9*10^4, srt = 39, labels = expression("3Fe + 4CO"[2]~"="))
+text(x = 200, y = 2.3*10^4, srt = 39, labels = expression(paste("Fe"[3], "O"[4]~"+ 4CO")))
+# C + CO2 = 2CO
+legend(
+  "bottomright",
+  lty = 3, lwd = 1.5, col = "#117733", bg = "#ffffff",
+  legend = expression("C + CO"[2]~"= 2CO")
+)
+```
+
+\begin{equation} 
+  CO_{2} + C \Leftrightarrow 2 CO
+  (\#eq:boudouard)
+\end{equation}
+
+La contrainte est alors la suivante : ce dernier mécanisme nécessite de se dérouler dans une enceinte fermée, telle qu'il n'y ait pas d'apports supplémentaires depuis le milieu extérieur. Condition sans doute seulement partiellement réalisable pour les contextes techniques qui nous intéressent ici, pour lesquels différents phénomènes sont susceptibles de modifier la composition atmosphérique et donc d'affecter les conditions d'équilibre (modification du tirage, recharge en combustible, etc. ; @letsch1983).
+
+## Le rouge et le noir : la couleur comme critère diagnostic ?
+
+L'approche chromatique des céramiques archéologiques a abouti à la construction d'une classification des modes de cuisson qui voit se succéder phases oxydantes et réductrices (tabl. \@ref(tab:picon)). Celle-ci repose sur une lecture séquentielle des variations de coloration de la pâte d'un même objet, entre la partie interne et les deux surfaces. La coloration des matériaux étudiés est ainsi considérée comme un critère diagnostic (univoque) des conditions d'oxydoréduction globales au sein de la structure de cuisson. L'évolution des conditions globales est alors considérée comme une donnée renseignant sur les stratégies techniques mises en œuvre au cours de la fabrication de matériaux céramiques (type de structure de cuisson, conduite de cette dernière, etc.).
+
+S'il fait peu de doutes que la coloration des matériaux céramiques est principalement contrôlée par le rapport $Fe^{2+}$/$Fe^{3+}$, la nature des processus qui relient ce constat et les mécanismes de réduction précédemment exposés reste à établir. Les réactions de conversion de l'hématite et de la magnétite étant dépendantes d'un contact entre gaz et solides, ces dernières sont donc essentiellement contrôlées par la diffusion des gaz à travers la matrice argileuse [@houseman1971].
+
+L'état d'oxydation du fer sera donc modifié si les conditions atmosphériques globales se trouvent changées au cours de la cuisson, à mesure que les gaz diffusent à travers la matrice céramique, affectant cette dernière progressivement depuis la surface vers l'intérieur. Pour les modes de cuisson aux conditions invariantes (modes B et C, tabl. \@ref(tab:picon)), les matériaux fabriqués doivent présenter une coloration homogène entre les parties interne et externe. Au contraire, les cuissons pour lesquelles plusieurs modifications des conditions d'oxydoréduction interviennent (modes A et D, tabl. \@ref(tab:picon)), sont susceptibles de conférer aux produits une coloration polychrome, couramment qualifiée de « sandwich » [@nodari2004]. La couleur de la partie interne est alors considérée comme la conséquence des conditions régnant dans le four au cours de la montée en température, tandis que celle des parties superficielles correspondrait aux conditions propres au refroidissement.
+
+```{r picon}
+picon <- utils::read.table("../tables/picon.csv", sep = ",", dec = ".",
+                           header = TRUE, row.names = NULL, encoding = "UTF-8")
+knitr::kable(picon, booktabs = TRUE, 
+             col.names = c("Mode de cuisson", "Chauffe", "Refroidissement"),
+             caption = "Classification des modes de 
+             cuisson des matériaux céramiques archéologiques en fonction de la 
+             succession des phases d'oxydoréduction, d'après Picon (2002). 
+             À noter que le mode D est considéré par l'auteur comme n’ayant 
+             jamais existé.") %>%
+  kableExtra::kable_styling(latex_options = "striped", full_width = F) %>%
+  kableExtra::add_header_above(c(" " = 1, "Conditions atmosphériques" = 2))
+```
+
+L'hétérogénéité des conditions d'oxydoréduction au sein d'une même structure de cuisson constitue cependant une première difficulté, qui peut être accentuée par la géométrie des artefacts en cours de cuisson. Une mauvaise circulation des gaz liée à un tirage déficient, à la présence d'objets dont le creux est rempli par d'autres, présentant un faible diamètre d'ouverture ou encore dont l'ouverture est au moins partiellement obstruée sont autant de situations susceptibles d'entraîner l'apparition de conditions d'oxydoréduction s'écartant localement des conditions globales (prévalant à l'échelle de la structure de cuisson ; @velde1999).
+
+À cela peuvent également s'ajouter des variations locales des conditions d'oxydoréduction, conséquences de réactions et de transformations internes au matériau en cours de cuisson. La combustion de matière organique présente au sein de la matière première argileuse est en effet à même de provoquer l'apparition de conditions réductrices locales, quand bien même les conditions au sein de la structure de cuisson seraient globalement oxydantes [@maritan2006]. De même, dans des conditions globalement réductrices, la présence de vapeur d'eau (notamment issue des minéraux hydratés) favorise la disparition d'une coloration interne grise ou noire en oxydant le carbone présent [@houseman1971a]. À l'inverse, en accord avec la réaction \@ref(eq:redox7), la présence de vapeur d'eau contribue à accentuer des conditions initialement réductrices par la présence de dihydrogène, et tend ainsi à augmenter la teneur en fer II [@houseman1971]. Dès lors que la durée de la cuisson n'a pas été suffisante pour équilibrer macro- et micro-conditions d'oxydoréduction, les conséquences de ces dernières (en termes d'état d'oxydation du fer) peuvent demeurer au sein des produits finis.
+
+\begin{equation} 
+  H_{2}O + CO \Leftrightarrow CO_{2} + H_{2}
+  (\#eq:redox7)
+\end{equation}
+
+L'utilisation de la coloration interne des matériaux céramiques comme critère diagnostic de l'évolution des conditions d'oxydoréduction globales au cours de la cuisson apparaît ainsi très fortement limitée.
+
+# Les pratiques de cuisson
+## Contrôler la cuisson ?
+Au regard de l'ambiguïté des indicateurs disponibles lorsqu'il s'agit de décrire la cuisson des matériaux céramiques, l'importance accordée au paramètre température n'est pas sans conséquences une fois replacée dans le cadre de l'étude des activités techniques.
+
+L'intérêt porté au seul paramètre température relève souvent d'une lecture ethnocentrique (et sans doute scientiste) de ces activités, sinon d'une conception monotone du développement des techniques potières dont le dit progrès est associé à des températures de cuisson toujours croissantes. Un tel jugement de valeur se manifeste particulièrement dans l'emploi d'une terminologie descriptive connotée : les matériaux céramiques sont ainsi « bien », « mieux », « mal », « sous- », « sur-cuits », etc. Ces techniques résulteraient alors nécessairement d'une complexification des structures associées, opposant structures bâties et non bâties :
+
+> *« Identification of firing procedure helps to establish the level of technological investment and sophistication employed in the firing of the group of pottery under investigation »* [@tite1995, p. 40]
+
+> *« [Kiln] is the most economic method [sic] of producing ceramics [...]. This is the ideal type of firing system. It has been used by most “advanced” civilizations [sic] and is still used, of course »* [@velde1999, p. 109]
+
+Une part des transferts de chaleur au cours de la cuisson se fait en effet au profit de la structure de cuisson, si bien que le four de potier possède une inertie thermique éventuellement à même de moduler les apports d'énergie : ralentissant la montée en température ou prolongeant le refroidissement (en restituant une certaine quantité d'énergie par rayonnement). Le contrôle de la cuisson ne saurait cependant se limiter au seul rôle de la structure, dont les caractéristiques intrinsèques éluderaient la gestion que peut avoir le potier de cette étape. La diversité des stratégies de contrôle des paramètres de la cuisson est ainsi bien documentée : la couleur des pots, le bruit du four, la durée du palier de maintien au maximum de température et donc la durée totale de la cuisson, la quantité de combustible consommée ou l'état d'avancement de sa combustion, sont autant d'indicateurs permettant d'estimer l'achèvement de la cuisson, indépendamment de la structure mise en œuvre.
+
+À partir d'environ 500°C, La couleur des pots incandescents, du rouge sombre au jaune paille, permet en effet une estimation de la température et ce jusque vers 1200°C ; rappelons que la compréhension du mécanisme (le rayonnement d'un corps noir est tel que la longueur d'onde émise est reliée à la température) ne date que du xxe siècle. Si les Bafia du Cameroun ne posent pas le problème en ces termes, ils n'en ôtent pas moins leurs pots du foyer dès lors qu'ils sont « rouges comme le fer » [@gosselain1992]. Si l'estimation à l'œil de la température fait partie intégrante des activités métallurgiques, ces dernières nécessitent une précision que ne permet guère l'inertie thermique des structures de cuisson et le déroulement des réactions de transformation associées à la pratique potière. Activité routinière, la planification de la cuisson peut également être liée à des habitudes qui permettent d'anticiper la quantité de combustible nécessaire ou la durée de chaque étape [@shepard1956]. Enfin, des stratégies permettent indirectement d'apprécier la composition de l'atmosphère au sein du four : en plaçant une torche auprès des voies permettant l'évacuation des gaz de combustion, les potiers de la vallée d'Oaxaca (Mexique) testent ainsi la présence d'hydrocarbures (auquel cas les gaz s'enflamment au contact de la torche) et le caractère réducteur de l'atmosphère. Comme le remarque néanmoins @shepard1977, il s'agit de son interprétation des phénomènes en jeu, certainement différente de celle des potiers qu'elle observe, s'ils en ont une.
+
+## Imaginaires industriels
+Il faut souligner le glissement, déjà signalé par @livingstonesmith2001a, qui s'opère alors, assimilant des conditions de cuisson, modalités exploitées par l'artisan, à des techniques. Ainsi, la question posée par @spencer2012, considérant qu'au sein de la série d'artefacts qu'ils étudient, les plus anciens « ont été systématiquement mieux cuits » : « déclin technique ou mauvaises ressources ? ». Ceci sans que le lien entre la température supposée estimée et ses éventuelles causes soit clairement établi et, surtout, avec un a priori particulièrement fort : la diminution de la température de cuisson est nécessairement associée à des causes néfastes. Ce peut aussi être un changement d'objectif (des poteries moins cuites sont plus poreuses, etc.).
+
+Le rapport à la nature ne se limite pas au problème de la subsistance, poussée par une quête de maximisation et d'efficacité : l'exploitation des ressources relève de choix liés --- mais non limités --- à la perception des qualités des matières, l'organisation du travail, les jeux de propriété du (sous-)sol, etc. Le symbolique, le futile, l'inutile tient toujours une grande place dans toutes les sociétés humaines. Si, dans un univers fini, les sources de matières et d'énergie sont nécessairement limitées, la contrainte ne réside pas seulement dans la disponibilité mais dans la réunion d'une ressource et des moyens matériels et intellectuels permettant sa mise en œuvre à un instant précis [@lemonnier1993]. Il est ainsi des possibilités de ressources offertes par la nature dans un contexte social donné.
+
+Faute d'un modèle pertinent permettant la construction de l'analogie pour l'estimation d'une température de cuisson, il s'agit avant tout d'une représentation [@balut1982] guidée par l'idée que l'on se fait des techniques de cuisson. L'intérêt porté à l'augmentation (ou du déclin) des températures de cuisson renvoie probablement bien plus à l'imaginaire technique propre à la société occidentale contemporaine qu'à une réalité ancienne [@gras2007; @gras2013].
+
+# Conclusion : la complainte du thermomètre
+Ainsi, il nous semble --- comme il a été formulé par d'autres avant nous [@livingstonesmith2001a] --- que l'estimation d'une température de cuisson n'a pas (sinon peu) de sens dans le cadre d'une approche technologique de la production de matières céramiques. Ceci, d'autant plus, qu'il n'existe pas une température de cuisson pour les matériaux céramiques comme il peut exister une température de fusion pour les métaux non alliés (ou, plus généralement, un domaine de température pour les alliages).
+
+La cuisson de matériaux céramiques est un processus en trois dimensions : température, atmosphère et durée. Ces trois paramètres sont indissociables et en modifier une revient à affecter les deux autres. La notion de température de cuisson n'a aucun sens dans une perspective d'étude technique de la production de matériaux céramiques. La recherche d'une telle valeur relève avant tout des modes de représentation du descripteur et ne rend pas compte de la temporalité des processus en jeu. Si les modes de cuisson, tels que proposés par Picon (dont on retiendra par ailleurs l'abondante contribution à l'étude et à la compréhension des matériaux céramiques ; @waksman2015), sont assurément pratiques, leur identification est sujette à caution dès lors que les indices observés résultent de causes multiples. Restituer les variations de conditions d'oxydoréduction au cours de la cuisson nécessite ainsi la prise en compte des processus internes. Ceux-ci sont liés aux transformations minéralogiques affectant progressivement la matrice argileuse et peuvent résulter d'une préparation particulière de la pâte (ajout de matière organique, pourrissage, etc.).
+
+La restitution de paramètres physiques (température ou conditions d'oxydoréduction), de même que l'identification de la structure de cuisson ne sont donc pas équivalents à la restitution de gestes ou de techniques. Appréhender les techniques liées à cette étape particulière de la fabrication des matériaux céramiques, nécessite de considérer l'intégralité des processus en jeu, sans les dissocier. La pratique courante, qui tend à les isoler et à les discrétiser, repose, on a pu le montrer, sur un raisonnement dont l'assise logique peut être discutée. Celle-ci est en effet construite sur l'établissement d'une analogie entre un objet archéologique et un référentiel expérimental, reposant sur l'établissement d'équivalences de conséquences et non de causes.
+
+Le piège est alors double. D'une part, l'analogie devient à la fois un postulat permettant la construction d'un modèle et la confirmation des résultats établis sur ce postulat : c'est le piège du raisonnement circulaire. D'autre part, dans sa définition actuelle, cette démarche relève de la reconstitution comme représentation avant tout guidée par l'idée que l'on se fait, aujourd'hui, des techniques de cuisson : c'est le piège de l'anachronisme. Une partie du problème réside probablement dans la dichotomie entre le discours du descripteur et la réalité matérielle objet de son analyse : tous deux sont le fruit de savoirs techniques différents, et la lecture de cette réalité à travers les modes de représentation du descripteur est à même de provoquer une incompréhension certaine.
+
+La compréhension de cette tâche stratégique que constitue la cuisson n'en demeure pas moins un élément essentiel à la restitution des activités techniques liées à la production céramique et devrait faire l'objet de nouvelles investigations.
+
+# Remerciements
+La présente étude a reçu un soutien financier de l'État géré par l'Agence Nationale de la Recherche au titre du programme Investissements d'avenir portant la référence ANR-10-LABX-52.
+
+Les auteurs tiennent à remercier Pierre Machut (IRAMAT-CRP2A, UMR 5060) pour sa relecture et ses commentaires.
+
+\newpage
+
+# Bibliographie
+<!-- La ligne suivante permet de faire apparaitre la bibliographie ici dans le format de sortie MS Word ou HTML, plutôt qu'à la fin du document (cela ne fonctionne pas pour le format PDF):  -->
 <div id="refs"></div>
 
 \newpage
 
-### Colophon
+# Colophon {-}
 
-This report was generated on `r Sys.time()` using the following computational environment and dependencies: 
+Généré le `r Sys.time()` avec l'environnement de calcul et les dépendances suivants: 
 
 ```{r colophon, cache = FALSE}
-# which R packages and versions?
-if ("devtools" %in% installed.packages()) devtools::session_info()
-```
-
-The current Git commit details are:
-
-```{r}
-# what commit is this file at? 
-if ("git2r" %in% installed.packages() & git2r::in_repository(path = ".")) git2r::repository(here::here())  
+utils::sessionInfo()
 ```
