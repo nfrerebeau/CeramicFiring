@@ -9,7 +9,7 @@
         "archaeometry",
         "compendium"
     ],
-    "upload_type": "article",
+    "upload_type": "software",
     "communities": [
         {
             "identifier": "archaeo"
