@@ -3,7 +3,7 @@
 
 # archeosciences2018
 
-[![DOI](https://zenodo.org/badge/DOI/xxx/xxx.svg)](https://doi.org/xxx/xxx)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3497250.svg)](https://doi.org/10.5281/zenodo.3497250)
 [![GitHub
 Release](https://img.shields.io/github/release/nfrerebeau/archeosciences2018.svg)](https://github.com/nfrerebeau/archeosciences2018/releases)
 [![Travis-CI Build
@@ -26,7 +26,7 @@ Please cite this compendium as:
 > Frerebeau, N. and Pernot, M. (2019). *Compendium of R code and data
 > for “Dans la chaleur des fours : que restituer des pratiques des
 > céramistes des sociétés anciennes ?”*. Accessed YYYY-MM-DD. Online at
-> <https://doi.org/xxx/xxx>.
+> <https://doi.org/10.5281/zenodo.3497250>.
 
 ## Licenses
 

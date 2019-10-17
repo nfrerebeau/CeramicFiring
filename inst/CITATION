@@ -7,12 +7,12 @@ citEntry(entry       = "Manual",
          author      = personList(as.person("Nicolas Frerebeau"),
                                    as.person("Michel Pernot")),
          year        = "2018",
-         doi         = "xxx",
+         doi         = "10.5281/zenodo.3497250",
 
          textVersion =
            paste("Frerebeau, N. and Pernot, M. (2018).
                  Compendium of R code and data for 'Dans la chaleur des
                  fours : que restituer des pratiques des céramistes des
                  sociétés anciennes ?'. Accessed ", Sys.Date(), ". Online at
-                 <https://doi.org/xxx>", sep = "")
+                 <https://doi.org/10.5281/zenodo.3497250>", sep = "")
 )

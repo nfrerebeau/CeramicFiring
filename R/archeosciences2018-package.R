@@ -4,7 +4,7 @@
 #'  \strong{Type:} \tab Compendium \cr
 #'  \strong{Version:} \tab 1.0 \cr
 #'  \strong{License:} \tab GPL-3 \cr
-#'  \strong{DOI:} \tab \href{https://doi.org/xxx}{xxx}
+#'  \strong{DOI:} \tab \href{https://doi.org/10.5281/zenodo.3497250}{10.5281/zenodo.3497250}
 #' }
 #' @author
 #' \strong{Full list of authors and contributors} (alphabetic order)
