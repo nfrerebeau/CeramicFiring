@@ -1,0 +1,17 @@
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+
+language: R
+sudo: false
+cache:
+  packages: true
+
+r:
+- 3.6
+
+# install linux libraries that some R pkgs depend on, add more as needed
+script:
+    # render the main mansucript document into HTML/Word/PDF
+  - Rscript -e "rmarkdown::render('analysis/paper/paper.Rmd')"
+
+# be more tolerant :)
+warnings_are_errors: false
